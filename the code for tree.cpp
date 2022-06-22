@@ -1,29 +1,26 @@
 #include <iostream>
-#include <bits/stdc++.h>
+
 using namespace std;
 
-struct Node{
-	int data;
-	struct Node* right;
-	struct Node* left;
-		Node(int val){
-			data = val;
-			left = NULL;
-			right = NULL;
-		}
+struct TreeNode {
+    int val;
+    TreeNode left;
+    TreeNoderight;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode left, TreeNoderight) : val(x), left(left), right(right) {}
 };
-int main(void){
-	struct Node* root= new Node(1);
 
-	root->right = new Node(2);
-	root->left = new Node(3);
+TreeNode* invertTree(TreeNode* root){
+    if (!root) return root;
+    invertTree(root->left);
+    invertTree(root->right);
+    TreeNode* temp = root->right;
+    root->right = temp;
 
-	root->right->right = new Node(4);
-	root->right->left = new Node(5);
+    return root;
+}
 
-	root->left->left = new Node(6);
-	root->left->right = new Node(7);
+int main(){
 
-	
-	return 0;
 }
